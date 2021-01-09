@@ -67,6 +67,6 @@ func TestFindLongest(t *testing.T) {
 	got := longest.FindLongest(given)
 
 	if !reflect.DeepEqual(got, want1) && !reflect.DeepEqual(got, want2) {
-		t.Errorf("\ngot:\n%v\nwanted:\n%v\nor\n%v", got, want1, want2)
+		t.Errorf("\nwith list:\n%v\ngot:\n%v\nwanted:\n%v\nor\n%v", given, got, want1, want2)
 	}
 }
