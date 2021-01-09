@@ -9,6 +9,7 @@ func FindLongest(words []string) []string {
 		for j, word2 := range words {
 			if i != j && Compare(word, word2) && !Contains(newLongest, word2) {
 				newLongest = append(newLongest, word2)
+				word = word2
 			}
 		}
 		fmt.Println(newLongest)
