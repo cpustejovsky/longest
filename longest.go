@@ -1,15 +1,19 @@
 package longest
 
+import "fmt"
+
 func FindLongest(words []string) []string {
 	var longest []string
 	for i, word := range words {
-		if !Contains(longest, word) {
-			longest = append(longest, word)
-		}
+		newLongest := []string{word}
 		for j, word2 := range words {
-			if i != j && Compare(word, word2) && !Contains(longest, word2) {
-				longest = append(longest, word2)
+			if i != j && Compare(word, word2) && !Contains(newLongest, word2) {
+				newLongest = append(newLongest, word2)
 			}
+		}
+		fmt.Println(newLongest)
+		if len(newLongest) > len(longest) {
+			longest = newLongest
 		}
 	}
 
