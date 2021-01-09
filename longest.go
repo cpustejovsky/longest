@@ -3,7 +3,9 @@ package longest
 func FindLongest(words []string) []string {
 	var longest []string
 	for i, word := range words {
-		longest = append(longest, word)
+		if !Contains(longest, word) {
+			longest = append(longest, word)
+		}
 		for j, word2 := range words {
 			if i != j && Compare(word, word2) && !Contains(longest, word2) {
 				longest = append(longest, word2)
