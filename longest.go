@@ -5,19 +5,24 @@ import "fmt"
 func FindLongest(words []string) []string {
 	var longest []string
 	for _, word := range words {
-		newLongest := []string{word}
-		for _, word2 := range words {
-			if Compare(word, word2) && !Contains(newLongest, word2) {
-				newLongest = append(newLongest, word2)
-				word = word2
-			}
-		}
-		fmt.Println(newLongest)
-		if len(newLongest) > len(longest) {
-			longest = newLongest
-		}
+		longest = CreateNewLongest(word, words, longest)
 	}
 
+	return longest
+}
+
+func CreateNewLongest(word string, words, longest []string) []string {
+	newLongest := []string{word}
+	for _, word2 := range words {
+		if Compare(word, word2) && !Contains(newLongest, word2) {
+			newLongest = append(newLongest, word2)
+			word = word2
+		}
+	}
+	fmt.Println(newLongest)
+	if len(newLongest) >= len(longest) {
+		return newLongest
+	}
 	return longest
 }
 
