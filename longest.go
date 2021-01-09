@@ -4,10 +4,10 @@ import "fmt"
 
 func FindLongest(words []string) []string {
 	var longest []string
-	for i, word := range words {
+	for _, word := range words {
 		newLongest := []string{word}
-		for j, word2 := range words {
-			if i != j && Compare(word, word2) && !Contains(newLongest, word2) {
+		for _, word2 := range words {
+			if Compare(word, word2) && !Contains(newLongest, word2) {
 				newLongest = append(newLongest, word2)
 				word = word2
 			}
