@@ -2,7 +2,6 @@ package longest
 
 import "fmt"
 
-
 //Will need to create multiple possible combinations to piece together
 //The most efficient way to keep track of this is to use maps
 //For each word, check which words have matching first letter
@@ -11,12 +10,25 @@ import "fmt"
 type matchingFirstLetter map[string][]string
 type matchingLastLetter map[string][]string
 
+/*
+FindLongest takes a slice of strings and returns a subset of them
+(potentially the same length of the initial slice)
+with the last letter of the first string matched to the first letter of the next string
+*/
 func FindLongest(words []string) []string {
+	fmt.Println(words)
 	var longest []string
+	fl := make(matchingFirstLetter)
+	ll := make(matchingLastLetter)
 	for _, word := range words {
-		longest = CreateNewLongest(word, words, longest)
+		fl[string(word[0])] = append(fl[string(word[0])], word)
+		ll[string(word[len(word)-1])] = append(ll[string(word[len(word)-1])], word)
 	}
-
+	// for _, word := range words {
+	// 	longest = CreateNewLongest(word, words, longest)
+	// }
+	fmt.Println(fl)
+	fmt.Println(ll)
 	return longest
 }
 
@@ -29,7 +41,6 @@ func CreateNewLongest(word string, words, longest []string) []string {
 			word = word2
 		}
 	}
-	fmt.Println(newLongest)
 	if len(newLongest) >= len(longest) {
 		return newLongest
 	}
